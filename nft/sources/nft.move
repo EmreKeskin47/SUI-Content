@@ -29,7 +29,7 @@ module nft::devnet_nft {
         name: string::String,
     }
 
-    // ===== Public view functions =====
+    // ===== Public view functions - GETTERs =====
 
     /// Get the NFT's `name`
     public fun name(nft: &DevNetNFT): &string::String {

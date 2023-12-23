@@ -8,7 +8,24 @@
 
 -   **Test:**: sui move test
 
--   **Publish:**: sui client publish <PROJECT_NAME> --gas-budget 20000
+-   **Balance:** sui client gas
+
+-   **Publish:**: sui client publish <PROJECT_NAME> --gas-budget 2000000
+
+## Request test tokens through cURL
+
+```
+curl --location --request POST 'https://faucet.devnet.sui.io/gas' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "FixedAmountRequest": {
+        "recipient": "<YOUR SUI ADDRESS>"
+    }
+}'
+
+```
+
+## Other Commands
 
 | **Command**         | **Description**                                                                                                                                                                                                                               |
 | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

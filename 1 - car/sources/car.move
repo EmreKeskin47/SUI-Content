@@ -2,17 +2,17 @@
 module car::car {
 // Same as Importing in rust, import object from sui std library
     use sui::object::{Self, UID};
-    
+    //import transaction context from sui std library
+    use sui::tx_context::{Self, TxContext};
+    use sui::transfer;
+
     // has key annotation and id, therefore this is an object 
     struct Car has key, store {
         id: UID,
         speed: u8,
         acceleration: u8,
-        handling: u8
+        handling: u8,
     }
-
-    //import transaction context from sui std library
-    use sui::tx_context::{Self, TxContext};
     
     //function to instantiate a new car object, returns car
     // for instantiation an object, we need a mutable reference to the txContext
@@ -27,10 +27,9 @@ module car::car {
         }
     }
 
-    use sui::transfer;
-
     //Car will be created and will be transferred to the the caller
-      public entry fun create(speed: u8,acceleration: u8,handling: u8, ctx: &mut TxContext) {
+      public entry fun init(speed: u8,acceleration: u8,handling: u8, ctx: &mut TxContext) {
+      
       let car = new(speed,acceleration,handling, ctx);
       transfer::public_transfer(car, tx_context::sender(ctx));
       }
